@@ -15,6 +15,7 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.List;
 import java.util.SortedMap;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -34,9 +35,22 @@ public class AutoResizeImageService extends Service {
     private Context mContext;
     //para el intnt Extra info
 
+    //intent
     public static final String  EXTRA_MESSAGE="mensaje";
 
+    //nombre packages
+     private String CURRENT_PACKAGE_NAME ="com.mio.jrdv.autoresizeimage";
+     private String PACKAGEMALDITO1="com.android.gallery";//el home screen de LL
+     private String lastAppPN = "";
+     private String currenApp="";
 
+
+    //PARA SABER SI ES LA PRIMERA VEZ QUE ENTRA EN GALERIA
+    public boolean FirstTimeAsked2Resize=false;
+
+    //PARA SABER SI DECIDIO NO HACER RESIZE
+
+    public boolean ResizeSelected=false;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -108,7 +122,7 @@ public class AutoResizeImageService extends Service {
 
                 //se supone que ambos funionana hasta nougat incluido!!
                 gettopactivity();//con este hacen falta permisos
-                printForegroundTask();//y con este tambien
+              //  printForegroundTask();//y con este tambien
 
 
             }
@@ -139,6 +153,7 @@ public class AutoResizeImageService extends Service {
 
     public void gettopactivity() {
 
+
         //NECESITA PERMISOS !!!
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -153,19 +168,56 @@ public class AutoResizeImageService extends Service {
                             usageStats);
                 }
                 if (mySortedMap != null && !mySortedMap.isEmpty()) {
-                    String currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
-                    //Log.v("INFO currentapp: ", currentApp);
+                    currenApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
+                    Log.v("INFO currentapp: ", currenApp);
                 }
             }
         } else {
             ActivityManager am = (ActivityManager) getBaseContext().getSystemService(ACTIVITY_SERVICE);
-            String currentApp = am.getRunningTasks(1).get(0).topActivity.getPackageName();
-            //Log.v("INFO currentapp: ", currentApp);
+            currenApp = am.getRunningTasks(1).get(0).topActivity.getPackageName();
+            Log.v("INFO currentapp: ", currenApp);
 
         }
+
+
+        // Provide the packagename(s) of apps here, you want to show password activity
+        if (currenApp.contains(PACKAGEMALDITO1)) {
+            if (!(lastAppPN.equals(currenApp))) {
+                lastAppPN = currenApp;
+                Log.e("gallery", "started");
+                //es la primera vez q entramos en la galeria
+                FirstTimeAsked2Resize=true;
+
+                //arranacamos ACTIVITY para que ELIJA si o no a resize
+
+                Intent lockIntent = new Intent(mContext, Choose2ResizeActivity.class);
+                lockIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        /*
+        public static final int FLAG_ACTIVITY_SINGLE_TOP = 536870912
+        If set, the activity will not be launched if it is already running at the top of the history stack.
+         */
+                //http://stackoverflow.com/questions/8077728/how-to-prevent-the-activity-from-loading-twice-on-pressing-the-button
+                //lockIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                //asi se esat simepre ejecuatnfo el onresume y onstop del loginpad!!!lo dejamos como eataba..no es de esto
+
+                mContext.startActivity(lockIntent);
+
+            }
+        } else {
+            if (lastAppPN.contains(PACKAGEMALDITO1)) {
+                if (!(currenApp.equals(lastAppPN))) {
+                    Log.e("galleria", "stoped");
+                    lastAppPN = "";
+
+                    //salimos de la galeria
+                    //TODO dependiendo de donde salga sera false o no...
+                    FirstTimeAsked2Resize=false;
+                }
+            }
+        }
+
+
     }
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////METODO 2 SABER APP FOREGROUND INCLUIDO NOUGAT//////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         //para hacerlo auto boot
         <receiver android:name=".BootCompletedIntentReceiver">
             <intent-filter>
@@ -34,7 +33,9 @@
         <service
             android:name=".AutoResizeImageService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".Choose2ResizeActivity"></activity>
     </application>
 
 </manifest>
