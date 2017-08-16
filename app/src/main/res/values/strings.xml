@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AutoResizeImage</string>
+
+
+    <string name="business_prompt">ELIJE APK DE GALERIA</string>
+
 </resources>

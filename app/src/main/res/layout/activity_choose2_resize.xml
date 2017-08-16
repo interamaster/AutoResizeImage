@@ -6,6 +6,14 @@
     android:background="@drawable/bubble_background"
     android:orientation="vertical">
 
+    <Spinner
+        android:paddingTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spApsQueAbrenGaleria"
+        android:prompt="@string/business_prompt"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined">
+    </Spinner>
 
 
 <com.github.glomadrian.grav.GravView

@@ -8,11 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         //TODO habilitar ADMIN
 
         //EnableAdmin();
+
+
+
+
+        //CHEECK APKS QUE ABREN GALERIA
+        getPackageForGalery();
 
         //start AutoResizeImageService
 
@@ -158,5 +169,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////SABER LAS APKS QUE PUEDEN ABRIR GALERIA//////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    public String getPackageForGalery() {
+        Intent mainIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        mainIntent.setType("image/*");
+        List<ResolveInfo> pkgAppsList = getApplicationContext().getPackageManager().queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
+        int size = pkgAppsList.size();
+        for (ResolveInfo infos : pkgAppsList) {
+
+
+            Log.d("INFO",infos.activityInfo.processName);
+            return infos.activityInfo.processName;
+
+
+
+        }
+        return null;
+    }
 
 }
