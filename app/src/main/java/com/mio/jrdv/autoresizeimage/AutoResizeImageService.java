@@ -40,7 +40,9 @@ public class AutoResizeImageService extends Service {
 
     //nombre packages
      private String CURRENT_PACKAGE_NAME ="com.mio.jrdv.autoresizeimage";
-     private String PACKAGEMALDITO1="com.android.gallery";//el home screen de LL
+    // public  static String PACKAGEMALDITO1="com.android.gallery";//el home screen de LL
+
+    public  static String PACKAGEMALDITO1;
      private String lastAppPN = "";
      private String currenApp="";
 
@@ -58,6 +60,7 @@ public class AutoResizeImageService extends Service {
 
         Log.d("INFO","INICIADO onCreate EN AUTORESIZEIMAGESERVICE!!");
 
+        Log.d("INFO","INICIADO onCreate con PACKAGEMALDITO1="+PACKAGEMALDITO1);
         mContext = this;
 
         // REGISTER RECEIVER THAT HANDLES SCREEN ON AND SCREEN OFF LOGIC
@@ -67,6 +70,8 @@ public class AutoResizeImageService extends Service {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         BroadcastReceiver mReceiver = new ScreenReceiver();
         registerReceiver(mReceiver, filter);
+
+
 
     }
 

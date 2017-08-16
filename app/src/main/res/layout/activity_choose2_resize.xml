@@ -6,14 +6,7 @@
     android:background="@drawable/bubble_background"
     android:orientation="vertical">
 
-    <Spinner
-        android:paddingTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spApsQueAbrenGaleria"
-        android:prompt="@string/business_prompt"
-        style="@style/Base.Widget.AppCompat.Spinner.Underlined">
-    </Spinner>
+
 
 
 <com.github.glomadrian.grav.GravView
@@ -38,6 +31,39 @@
         app:shake_max_duration="20000"
         app:shake_variance="500dp"
         />
+
+    <ImageButton
+        android:id="@+id/YESButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/yes_icon"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="44dp"
+        android:onClick="PulsadoYES"/>
+
+    <ImageButton
+        android:id="@+id/NOButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:onClick="PulsadoNO"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/YESButton"
+        app:srcCompat="@drawable/no_icon" />
+
+    <TextView
+        android:id="@+id/TEXTinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:ems="20"
+
+        android:text="QUIERES REDUCIR IMAGEN?" />
 
 
 </RelativeLayout>

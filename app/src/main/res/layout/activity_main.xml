@@ -15,4 +15,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <Button
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:text="SALIR"
+        android:onClick="Salir"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Spinner
+        android:paddingTop="100dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spApsQueAbrenGaleria"
+        android:prompt="@string/business_prompt"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+    </Spinner>
+
+
+
+
+
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -16,7 +17,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 0;
     private DevicePolicyManager mDPM;
     private ComponentName mAdminName;
+
+
+    //para spinner
+
+    ArrayAdapter<String> AppQueAbrenGaleriaArray;
+    Spinner spApksParaGaleria;
+    String APKNAMEDELSPINNER;
+
+    List<String> apks;
+
 
 
 
@@ -55,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+/*
+
+//TODO volver a pobner tas quitar spinner
 
         //CHEECK APKS QUE ABREN GALERIA
         getPackageForGalery();
@@ -62,6 +86,84 @@ public class MainActivity extends AppCompatActivity {
         //start AutoResizeImageService
 
         StartServiceYa();
+
+  */
+
+        ////////TODO quitar SPINNER//////////////////////////////
+
+
+
+        ///////////////////custom sinner con imagenes y tecxto:
+
+
+        spApksParaGaleria = (Spinner) findViewById(R.id.spApsQueAbrenGaleria);
+
+        //llamamos funcion para llenar Listde nonmbres de apks que abren galeria
+
+        getPackageForGalery2();
+
+        //Spinner mySpinner = (Spinner)findViewById(R.id.spinner);
+        spApksParaGaleria.setAdapter(new MyAdapter(MainActivity.this, R.layout.row, apks));
+
+
+
+        spApksParaGaleria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapter, View v,
+                                       int position, long id) {
+                // On selecting a spinner item
+                APKNAMEDELSPINNER = adapter.getItemAtPosition(position).toString();
+                // Showing selected spinner item
+                Toast.makeText(getApplicationContext(),
+                        "Selected Galeria : " + APKNAMEDELSPINNER, Toast.LENGTH_SHORT).show();
+
+                Log.e("INFO TOAST","Selected Galeria : " + APKNAMEDELSPINNER);
+
+                AutoResizeImageService.PACKAGEMALDITO1=APKNAMEDELSPINNER;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+    }
+
+
+    public class MyAdapter extends ArrayAdapter{
+        public MyAdapter(Context context, int textViewResourceId, List<String> objects) {
+            super(context, textViewResourceId, objects);
+        }
+        @Override
+        public View getDropDownView(int position, View convertView,ViewGroup parent) {
+            return getCustomView(position, convertView, parent);
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return getCustomView(position, convertView, parent);
+        }
+        public View getCustomView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater=getLayoutInflater();
+            View row=inflater.inflate(R.layout.row, parent, false);
+            TextView label=(TextView)row.findViewById(R.id.app_name);
+            label.setText(apks.get(position));
+
+
+            //el icono desed el packagename:
+            //Drawable icon = getPackageManager().getApplicationIcon("com.example.testnotification");
+            //imageView.setImageDrawable(icon);
+            ImageView icon=(ImageView)row.findViewById(R.id.app_icon);
+            Drawable icondraw = null;
+            try {
+                icondraw = getPackageManager().getApplicationIcon(apks.get(position));
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            icon.setImageDrawable( icondraw);
+            return row;
+        }
+
+
 
     }
 
@@ -193,4 +295,46 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+
+
+
+//////////////////////////////////////////IDEM DEVOLVIENDO ARAY CON NOMBRES/////////////////////////////////////////
+
+
+
+    public List<String> getPackageForGalery2() {
+        Intent mainIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        mainIntent.setType("image/*");
+        List<ResolveInfo> pkgAppsList = getApplicationContext().getPackageManager().queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
+        int size = pkgAppsList.size();
+
+        apks = new ArrayList<String>();
+
+        for (ResolveInfo infos : pkgAppsList) {
+
+
+            Log.d("INFO EN IMAGECHOOSE",infos.activityInfo.processName);
+            //return infos.activityInfo.processName;
+            apks.add(infos.activityInfo.processName);
+
+            //return apks;
+
+
+
+
+
+
+        }
+
+        return apks;
+        //return null;
+    }
+
+
+    public void Salir(View view) {
+
+        //start AutoResizeImageService
+
+        StartServiceYa();
+    }
 }

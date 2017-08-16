@@ -19,11 +19,6 @@ import java.util.List;
 
 public class Choose2ResizeActivity extends AppCompatActivity {
 
-    ArrayAdapter<String> AppQueAbrenGaleriaArray;
-    Spinner spApksParaGaleria;
-    String APKNAMEDELSPINNER;
-
-    List<String> apks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,74 +31,27 @@ public class Choose2ResizeActivity extends AppCompatActivity {
         ab.hide();
 
 
-
-
-
-        /////////////////////spinner////////////////////////////
-
-        spApksParaGaleria = (Spinner) findViewById(R.id.spApsQueAbrenGaleria);
-
-        //lamamos funcion para llenar Listde nonmbres de apks que abren galeria
-
-        getPackageForGalery();
-
-        // Initialize and set Adapter del SPinner
-        AppQueAbrenGaleriaArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, apks);
-
-
-        AppQueAbrenGaleriaArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spApksParaGaleria.setAdapter(AppQueAbrenGaleriaArray);
-
-
-        spApksParaGaleria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapter, View v,
-                                       int position, long id) {
-                // On selecting a spinner item
-                APKNAMEDELSPINNER = adapter.getItemAtPosition(position).toString();
-                // Showing selected spinner item
-                Toast.makeText(getApplicationContext(),
-                        "Selected Galeria : " + APKNAMEDELSPINNER, Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-        });
     }
 
 
+    public void PulsadoNO(View view) {
+
+        finish();
+    }
+
+    public void PulsadoYES(View view) {
+
+        //TODO ver que hacer!!!
+
+    }
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////SABER LAS APKS QUE PUEDEN ABRIR GALERIA//////////////////////////////////////////////////////
+    //////////////////////////////////DETECTATR BACK BUTTON//////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    public List<String> getPackageForGalery() {
-        Intent mainIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        mainIntent.setType("image/*");
-        List<ResolveInfo> pkgAppsList = getApplicationContext().getPackageManager().queryIntentActivities(mainIntent, PackageManager.GET_RESOLVED_FILTER);
-        int size = pkgAppsList.size();
-
-        apks = new ArrayList<String>();
-        for (ResolveInfo infos : pkgAppsList) {
-
-
-            Log.d("INFO EN IMAGECHOOSE",infos.activityInfo.processName);
-            //return infos.activityInfo.processName;
-            apks.add(infos.activityInfo.processName);
-
-            //return apks;
-
-
-
-
-
-
-        }
-
-        return apks;
-        //return null;
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }
