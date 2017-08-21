@@ -4,4 +4,6 @@
 
     <string name="business_prompt">ELIJE APK DE GALERIA</string>
 
+    <string name="pleaseEnablePermission">Permission is needed to display images.</string>
+
 </resources>

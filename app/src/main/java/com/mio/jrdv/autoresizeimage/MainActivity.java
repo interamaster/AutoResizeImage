@@ -1,5 +1,6 @@
 package com.mio.jrdv.autoresizeimage;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.app.admin.DevicePolicyManager;
@@ -11,11 +12,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,26 @@ public class MainActivity extends AppCompatActivity {
         //TODO habilitar ADMIN
 
         //EnableAdmin();
+
+
+
+        Util.checkPermission(
+                this,
+                new String[]{
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA
+                },
+                new Util.OnPermissionCallback() {
+                    @Override
+                    public void onPermissionGranted() {
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                        finish();
+                    }
+                }
+        );
 
 
 

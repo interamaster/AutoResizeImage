@@ -32,16 +32,6 @@
         app:shake_variance="500dp"
         />
 
-    <ImageButton
-        android:id="@+id/YESButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/yes_icon"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="44dp"
-        android:onClick="PulsadoYES"/>
 
     <ImageButton
         android:id="@+id/NOButton"
@@ -51,19 +41,48 @@
         android:onClick="PulsadoNO"
         android:layout_centerVertical="true"
         android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/YESButton"
+
         app:srcCompat="@drawable/no_icon" />
 
     <TextView
         android:id="@+id/TEXTinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButton"
+        android:layout_above="@+id/NOButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp"
         android:ems="20"
 
         android:text="QUIERES REDUCIR IMAGEN?" />
+
+    <com.jess.ui.TwoWayGridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/white"
+        app:cacheColorHint="#E8E8E8"
+        app:columnWidth="120dp"
+        app:gravity="center"
+        app:horizontalSpacing="7dp"
+        app:numColumns="auto_fit"
+        app:numRows="auto_fit"
+        app:rowHeight="120dp"
+        app:scrollDirectionLandscape="horizontal"
+        app:scrollDirectionPortrait="horizontal"
+        app:stretchMode="spacingWidthUniform"
+        app:verticalSpacing="7dp"/>
+
+    <View
+        android:id="@+id/borderTop"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/divider"/>
+
+
+
 
 
 </RelativeLayout>

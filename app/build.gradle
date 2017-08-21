@@ -32,6 +32,12 @@ dependencies {
 
     compile 'com.github.glomadrian:Grav:1.1'
 
+    //para la recents image
+
+    compile 'com.amirarcane.recent-images:recentimages:2.0.1'
+
+
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
