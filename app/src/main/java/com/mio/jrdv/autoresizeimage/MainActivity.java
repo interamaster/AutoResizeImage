@@ -126,6 +126,21 @@ public class MainActivity extends AppCompatActivity {
         //Spinner mySpinner = (Spinner)findViewById(R.id.spinner);
         spApksParaGaleria.setAdapter(new MyAdapter(MainActivity.this, R.layout.row, apks));
 
+       //para que ponga el valor ya elegido en ele spinner
+        String GaleriaElegidaName = Myapplication.preferences.getString(Myapplication.PREF_APKNAMEDELSPINNER,"NO");//the value you want the position for
+
+        if (!GaleriaElegidaName.equals("NO")) {
+
+            ArrayAdapter myAdap = (ArrayAdapter) spApksParaGaleria.getAdapter();
+            int spinnerPosition = myAdap.getPosition(GaleriaElegidaName);
+
+            //set the default according to value
+            spApksParaGaleria.setSelection(spinnerPosition);
+
+        }
+
+
+        //para elegir del spinner
 
 
         spApksParaGaleria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -141,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("INFO TOAST","Selected Galeria : " + APKNAMEDELSPINNER);
 
                 AutoResizeImageService.PACKAGEMALDITO1=APKNAMEDELSPINNER;
+
+                //lo guardamos en pref
+
+                Myapplication.preferences.edit().putString(Myapplication.PREF_APKNAMEDELSPINNER,APKNAMEDELSPINNER).commit();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {

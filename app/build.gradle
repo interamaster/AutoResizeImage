@@ -36,6 +36,11 @@ dependencies {
 
     compile 'com.amirarcane.recent-images:recentimages:2.0.1'
 
+    //PARA EL TOAST
+
+    compile 'com.muddzdev:styleabletoast:1.0.7'
+
+
 
 
     compile 'com.android.support:appcompat-v7:25.3.1'

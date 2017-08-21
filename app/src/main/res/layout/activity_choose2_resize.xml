@@ -41,19 +41,18 @@
         android:onClick="PulsadoNO"
         android:layout_centerVertical="true"
         android:layout_marginStart="20dp"
-
-        app:srcCompat="@drawable/no_icon" />
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/no_icon"
+        android:background="@android:color/transparent"/>
 
     <TextView
         android:id="@+id/TEXTinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/NOButton"
+        android:layout_above="@+id/gridview"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp"
-        android:ems="20"
-
-        android:text="QUIERES REDUCIR IMAGEN?" />
+        android:text="DOBLE TAP TO REDUCE IMAGE" />
 
     <com.jess.ui.TwoWayGridView
         android:id="@+id/gridview"
@@ -61,7 +60,7 @@
         android:layout_height="120dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="7dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:cacheColorHint="#E8E8E8"
         app:columnWidth="120dp"
         app:gravity="center"
@@ -72,14 +71,10 @@
         app:scrollDirectionLandscape="horizontal"
         app:scrollDirectionPortrait="horizontal"
         app:stretchMode="spacingWidthUniform"
-        app:verticalSpacing="7dp"/>
+        app:verticalSpacing="7dp"
 
-    <View
-        android:id="@+id/borderTop"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="7dp"
-        android:background="@color/divider"/>
+        android:layout_alignParentBottom="true"/>
+
 
 
 
