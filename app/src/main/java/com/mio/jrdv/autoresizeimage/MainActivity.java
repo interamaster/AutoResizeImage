@@ -35,6 +35,8 @@ import java.util.List;
 
 //V02 añadido icono de apk galeria y doble tap detectado con toast
 //v03 añadido resize de images que guarda en IMAGENES con animacion y toast
+//v031 arregladop el que salga cada vez que se entre en galeria
+
 
 
 public class MainActivity extends AppCompatActivity {

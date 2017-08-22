@@ -174,22 +174,24 @@ public class AutoResizeImageService extends Service {
                 }
                 if (mySortedMap != null && !mySortedMap.isEmpty()) {
                     currenApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
-                    Log.v("INFO currentapp: ", currenApp);
+                  //  Log.v("INFO currentapp: ", currenApp);
+                   // Log.v("INFO lastapp: ", lastAppPN);
                 }
             }
         } else {
             ActivityManager am = (ActivityManager) getBaseContext().getSystemService(ACTIVITY_SERVICE);
             currenApp = am.getRunningTasks(1).get(0).topActivity.getPackageName();
-            Log.v("INFO currentapp: ", currenApp);
+           // Log.v("INFO currentapp: ", currenApp);
+          //  Log.v("INFO lastapp: ", lastAppPN);
 
         }
 
 
         // Provide the packagename(s) of apps here, you want to show password activity
-        if (currenApp.contains(PACKAGEMALDITO1)) {
+        if (currenApp.contains(PACKAGEMALDITO1) && !FirstTimeAsked2Resize) {
             if (!(lastAppPN.equals(currenApp))) {
                 lastAppPN = currenApp;
-                Log.e("gallery", "started");
+             //   Log.e("gallery", "started");
                 //es la primera vez q entramos en la galeria
                 FirstTimeAsked2Resize=true;
 
@@ -208,17 +210,25 @@ public class AutoResizeImageService extends Service {
                 mContext.startActivity(lockIntent);
 
             }
-        } else {
-            if (lastAppPN.contains(PACKAGEMALDITO1)) {
+        }
+        else   if (lastAppPN.contains(PACKAGEMALDITO1) && !FirstTimeAsked2Resize) {
                 if (!(currenApp.equals(lastAppPN))) {
-                    Log.e("galleria", "stoped");
-                    lastAppPN = "";
+              //      Log.e("galleria", "stoped");
+                    lastAppPN = currenApp;
 
                     //salimos de la galeria
                     //TODO dependiendo de donde salga sera false o no...
                     FirstTimeAsked2Resize=false;
                 }
-            }
+                 }
+
+        else   if (!currenApp.contains(CURRENT_PACKAGE_NAME) || !lastAppPN.contains(PACKAGEMALDITO1 )){
+
+         //   Log.e("galleria", "NO ESTAMOS");
+            lastAppPN = currenApp;
+
+            FirstTimeAsked2Resize=false;
+
         }
 
 
