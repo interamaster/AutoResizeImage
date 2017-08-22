@@ -31,6 +31,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+//V02 añadido icono de apk galeria y doble tap detectado con toast
+//v03 añadido resize de images que guarda en IMAGENES con animacion y toast
+
+
 public class MainActivity extends AppCompatActivity {
 
     //para el device manager

@@ -13,4 +13,26 @@
         <item>com.github.glomadrian.grav.generator.animation.SideToSideAnimator</item>
         <item>com.github.glomadrian.grav.generator.animation.ShakeAnimator</item>
     </string-array>
+
+
+    <string-array name="red">
+
+        <item>#9E0142</item>
+        <item>#D53E4F</item>
+        <item>#F46D43</item>
+        <item>#FDAE61</item>
+        <item>#FEE08B</item>
+        <item>#FFFFBF</item>
+        <item>#E6F598</item>
+        <item>#ABDDA4</item>
+        <item>#66C2A5</item>
+        <item>#3288BD</item>
+        <item>#5E4FA2</item>
+    </string-array>
+
+    <string-array name="path">
+        <item>com.github.glomadrian.grav.generator.animation.PathAnimator</item>
+        <item>com.github.glomadrian.grav.generator.animation.BallSizeAnimator</item>
+    </string-array>
+
 </resources>

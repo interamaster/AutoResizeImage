@@ -10,10 +10,11 @@
 
 
 <com.github.glomadrian.grav.GravView
-        android:id="@+id/grav"
+        android:id="@+id/grav1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:visibility="invisible"
         app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
         app:array_colors="@array/bubble"
         app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
@@ -31,6 +32,31 @@
         app:shake_max_duration="20000"
         app:shake_variance="500dp"
         />
+
+    <com.github.glomadrian.grav.GravView
+        android:id="@+id/grav2"
+        android:layout_centerInParent="true"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:visibility="invisible"
+        app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
+        app:array_colors="@array/red"
+        app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
+        app:regular_cell_size="150"
+        app:regular_variance="100"
+        app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
+        app:ball_size_from_size="3dp"
+        app:ball_size_to_size="6dp"
+        app:animationGenerators="@array/path"
+        app:path_variance_from="-10dp"
+        app:path_variance_to="12dp"
+        app:path="@string/circle"
+        app:path_original_width="@integer/circle_original_width"
+        app:path_original_height="@integer/circle_original_height"
+        app:path_min_duration="5000"
+        app:path_max_duration="6000"
+        />
+
 
 
     <ImageButton
@@ -53,6 +79,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp"
         android:text="DOBLE TAP TO REDUCE IMAGE" />
+
+    <TextView
+        android:id="@+id/TEXTinfoSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IMAGE SIZE:"
+        android:layout_above="@+id/gridview"
+        android:layout_alignStart="@+id/TEXTinfo" />
+
 
     <com.jess.ui.TwoWayGridView
         android:id="@+id/gridview"
