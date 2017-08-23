@@ -58,6 +58,11 @@ public class AutoResizeImageService extends Service {
         super.onCreate();
         ServiceYaRunning=false;
 
+
+        //lo guardamos en pref
+
+        PACKAGEMALDITO1=Myapplication.preferences.getString(Myapplication.PREF_APKNAMEDELSPINNER,"NONE");
+
         Log.d("INFO","INICIADO onCreate EN AUTORESIZEIMAGESERVICE!!");
 
         Log.d("INFO","INICIADO onCreate con PACKAGEMALDITO1="+PACKAGEMALDITO1);

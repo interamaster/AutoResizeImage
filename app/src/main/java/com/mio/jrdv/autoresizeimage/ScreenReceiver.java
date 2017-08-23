@@ -16,15 +16,19 @@ public class ScreenReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+        /*if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             screenOff = true;
-        } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+        } else
+            */
+
+        if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             screenOff = false;
-        }
+
         Intent i = new Intent(context, AutoResizeImageService.class);
         i.putExtra("screen_state", screenOff);
         i.putExtra(AutoResizeImageService.EXTRA_MESSAGE,"screen_state");
         context.startService(i);
+        }
     }
 
 }

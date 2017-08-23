@@ -35,8 +35,7 @@ import java.util.List;
 
 //V02 añadido icono de apk galeria y doble tap detectado con toast
 //v03 añadido resize de images que guarda en IMAGENES con animacion y toast
-//v031 arregladop el que salga cada vez que se entre en galeria
-
+//v032 añadido pref de nombre app maldita ok en service para que lo sepa desde el boot ycambiado screenreceiver a solo reiniciar service al encender pantalla
 
 
 public class MainActivity extends AppCompatActivity {
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO habilitar ADMIN
 
-        //EnableAdmin();
+       // EnableAdmin();
 
 
 
@@ -384,6 +383,10 @@ public class MainActivity extends AppCompatActivity {
 
         //start AutoResizeImageService
 
-        StartServiceYa();
+       // StartServiceYa();
+
+        if (!isMyServiceRunning(AutoResizeImageService.class)){
+            StartServiceYa();
+        }
     }
 }

@@ -8,13 +8,10 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
-//PARA ACCEDER IAMGENES
+    //PARA ACCEDER IAMGENES
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
-
         android:name=".Myapplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,17 +33,41 @@
             </intent-filter>
         </receiver>
 
+
+<!--
+        //para device admin de moento no lo uso
+        <receiver
+            android:name=".DeviceAdmin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+-->
         <service
             android:name=".AutoResizeImageService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Choose2ResizeActivity"></activity>
+        <activity android:name=".Choose2ResizeActivity" />
 
+       <!--
+       //no necesito q sea accesibility
+        <service
+            android:name=".AutoResizeImageServiceWithAccesibility"
+            android:enabled="true"
+            android:exported="true">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+        </service>
 
-
-
-
+        -->
     </application>
 
 </manifest>

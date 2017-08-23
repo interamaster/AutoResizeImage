@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 public class Myapplication extends Application {
     public static SharedPreferences preferences;
     public static  final String PREF_APKNAMEDELSPINNER="APKNAMEDELSPINNER";
+    public static final String PREF_BOOL_SERVICEENABLED="ServiceEnable";
 
 
     @Override
