@@ -179,13 +179,15 @@ public class AutoResizeImageService extends Service {
                 }
                 if (mySortedMap != null && !mySortedMap.isEmpty()) {
                     currenApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
-                  //  Log.v("INFO currentapp: ", currenApp);
-                   // Log.v("INFO lastapp: ", lastAppPN);
+
+                    Log.v("INFO currentapp: ", currenApp);
+                    Log.v("INFO lastapp: ", lastAppPN+"ultima");
                 }
             }
         } else {
             ActivityManager am = (ActivityManager) getBaseContext().getSystemService(ACTIVITY_SERVICE);
             currenApp = am.getRunningTasks(1).get(0).topActivity.getPackageName();
+         //   lastAppPN = am.getRunningTasks(1).get(1).topActivity.getPackageName();
            // Log.v("INFO currentapp: ", currenApp);
           //  Log.v("INFO lastapp: ", lastAppPN);
 
@@ -193,10 +195,10 @@ public class AutoResizeImageService extends Service {
 
 
         // Provide the packagename(s) of apps here, you want to show password activity
-        if (currenApp.contains(PACKAGEMALDITO1) && !FirstTimeAsked2Resize) {
-            if (!(lastAppPN.equals(currenApp))) {
+        if (currenApp.equals(PACKAGEMALDITO1) && !FirstTimeAsked2Resize &&!lastAppPN.equals(PACKAGEMALDITO1)) {
+          // if (!(lastAppPN.equals(currenApp))) {
                 lastAppPN = currenApp;
-             //   Log.e("gallery", "started");
+               Log.e("INFO", "gallery started");
                 //es la primera vez q entramos en la galeria
                 FirstTimeAsked2Resize=true;
 
@@ -214,22 +216,22 @@ public class AutoResizeImageService extends Service {
 
                 mContext.startActivity(lockIntent);
 
-            }
+            // }
         }
-        else   if (lastAppPN.contains(PACKAGEMALDITO1) && !FirstTimeAsked2Resize) {
-                if (!(currenApp.equals(lastAppPN))) {
-              //      Log.e("galleria", "stoped");
-                    lastAppPN = currenApp;
+        else   if (!currenApp.equals(CURRENT_PACKAGE_NAME) && FirstTimeAsked2Resize && lastAppPN.equals(PACKAGEMALDITO1)) {
+              //  if (!(currenApp.equals(lastAppPN))) {
+                   Log.e("INFO", " gallery stoped");
+                   lastAppPN = currenApp;
 
                     //salimos de la galeria
                     //TODO dependiendo de donde salga sera false o no...
                     FirstTimeAsked2Resize=false;
-                }
+               // }
                  }
 
-        else   if (!currenApp.contains(CURRENT_PACKAGE_NAME) || !lastAppPN.contains(PACKAGEMALDITO1 )){
+      else   if (!currenApp.contains(CURRENT_PACKAGE_NAME)&& !FirstTimeAsked2Resize && lastAppPN.equals(PACKAGEMALDITO1)){
 
-         //   Log.e("galleria", "NO ESTAMOS");
+             Log.e("INFO", "NO ESTAMOS");
             lastAppPN = currenApp;
 
             FirstTimeAsked2Resize=false;
@@ -269,6 +271,46 @@ public class AutoResizeImageService extends Service {
     }
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////METODO 3 SABER APP FOREGROUND INCLUIDO NOUGAT//////////////////////////////////////////////////////
+    ////////////////////////////////////////SE SUPONE MAS LIVIANO Y RAPIDO/////NO FUNCIONA/////////////////////////////////////////////////////////////
+
+
+    public void gettopactivity2() {
+
+
+        String topPackageName;
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            UsageStatsManager mUsageStatsManager = (UsageStatsManager) getSystemService("usagestats");
+            long currentTime = System.currentTimeMillis();
+            // get usage stats for the last 1 seconds
+            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, currentTime - 1000 * 1, currentTime);
+            // search for app with most recent last used time
+            if (stats != null) {
+                long lastUsedAppTime = 0;
+                for (UsageStats usageStats : stats) {
+                    if (usageStats.getLastTimeUsed() > lastUsedAppTime) {
+                        topPackageName = usageStats.getPackageName();
+                        lastUsedAppTime = usageStats.getLastTimeUsed();
+
+                          Log.v("INFO currentapp: ", topPackageName);
+                          // Log.v("INFO lastapp: ", lastUsedAppTime);
+
+                    }
+                }
+            }
+        }
+        else {
+            ActivityManager am = (ActivityManager) getBaseContext().getSystemService(ACTIVITY_SERVICE);
+            currenApp = am.getRunningTasks(1).get(0).topActivity.getPackageName();
+            //   lastAppPN = am.getRunningTasks(1).get(1).topActivity.getPackageName();
+            // Log.v("INFO currentapp: ", currenApp);
+            //  Log.v("INFO lastapp: ", lastAppPN);
+
+        }
+
+    }
 
     @Override
     public void onDestroy() {

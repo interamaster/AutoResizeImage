@@ -1,32 +1,42 @@
 package com.mio.jrdv.autoresizeimage;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.app.admin.DevicePolicyManager;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +46,7 @@ import java.util.List;
 //V02 añadido icono de apk galeria y doble tap detectado con toast
 //v03 añadido resize de images que guarda en IMAGENES con animacion y toast
 //v032 añadido pref de nombre app maldita ok en service para que lo sepa desde el boot ycambiado screenreceiver a solo reiniciar service al encender pantalla
-
+//v033 cambiado chequeo de abrir o no service activity
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,14 +81,51 @@ public class MainActivity extends AppCompatActivity {
         //habilitamos el usagestats
         //metodo1
 
-        usageAccessSettingsPage();
+        //usageAccessSettingsPage();
 
         //metodo2
 
         //needPermissionForBlocking(this);
 
 
-        //TODO habilitar ADMIN
+        //metodo 3
+
+      if (!isAccessGranted()) {
+           // Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+           // startActivity(intent);
+
+
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Usage Access")
+                .setMessage("App will not run without usage access permissions.")
+                .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                        // intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$SecuritySettingsActivity"));
+                       // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//TENGO QUE QUIATRLO O onActivityResult SE EJECUTA ANTES
+                        startActivityForResult(intent,REQUEST_CODE);//oara e activityresult es request code =0!!!
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .create();
+
+
+        alertDialog.show();
+
+      }
+
+
+
+    //TODO habilitar ADMIN
 
        // EnableAdmin();
 
@@ -321,6 +368,92 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private boolean isAccessGranted() {
+        try {
+            PackageManager packageManager = getPackageManager();
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(getPackageName(), 0);
+            AppOpsManager appOpsManager = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+            int mode = 0;
+            if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.KITKAT) {
+                mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                        applicationInfo.uid, applicationInfo.packageName);
+            }
+            return (mode == AppOpsManager.MODE_ALLOWED);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //el reqquestCode es 0(el que llmamamos desde el intent!!!
+
+
+
+        if(REQUEST_CODE == requestCode)
+        {
+
+            //volvemos a chequear que se activo:
+
+            Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats  requestcode:"+requestCode);
+
+
+
+
+            if (!isAccessGranted()) {
+                // Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                // startActivity(intent);
+
+                Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats ");
+
+
+
+                //TODO en lugar de toast usamos https://github.com/Muddz/StyleableToast
+
+                showNewToast("YOU HAVE TO ENABLE ME TO WORK!!!!" );
+
+
+            }
+
+            else {
+                //si se habilito..empieza el service
+
+              //no hacemos nada
+            }
+
+        }
+
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////NEW TOAST//////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+    private void showNewToast(String texto2Toast) {
+
+
+        StyleableToast st = new StyleableToast(MainActivity.this, texto2Toast, Toast.LENGTH_SHORT);
+        st.setBackgroundColor(Color.parseColor("#ff5a5f"));
+        st.setTextColor(Color.WHITE);
+        st.setIcon(R.mipmap.ic_launcher);//TODO poner icono app
+        st.spinIcon();
+        st.setCornerRadius(20);
+        st.setMaxAlpha();
+        st.show();
+
+
+
+    }
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////SABER LAS APKS QUE PUEDEN ABRIR GALERIA//////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -385,8 +518,68 @@ public class MainActivity extends AppCompatActivity {
 
        // StartServiceYa();
 
-        if (!isMyServiceRunning(AutoResizeImageService.class)){
-            StartServiceYa();
+
+        if (!isAccessGranted()) {
+            // Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            // startActivity(intent);
+
+            Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats ");
+
+
+
+            //TODO en lugar de toast usamos https://github.com/Muddz/StyleableToast
+
+            showNewToast("YOU HAVE TO ENABLE ME TO WORK!!!!" );
+
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this)
+                    .setTitle("WARNING!!!!")
+                    .setMessage("App will not run without usage access permissions.")
+                    .setPositiveButton("DONT CARE", new DialogInterface.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            if (!isMyServiceRunning(AutoResizeImageService.class)){
+                                StartServiceYa();
+                            }
+                           finish();
+                            }
+                    })
+                    .setNegativeButton("OK LETS DO IT", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                            dialog.dismiss();
+
+                            // continue with delete
+                            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                            // intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$SecuritySettingsActivity"));
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//TENGO QUE QUIATRLO O onActivityResult SE EJECUTA ANTES
+                            startActivityForResult(intent,REQUEST_CODE);//oara e activityresult es request code =0!!!
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .create();
+
+
+            alertDialog.show();
+
+
+        }
+
+
+
+
+
+        else {
+
+
+            if (!isMyServiceRunning(AutoResizeImageService.class)){
+                StartServiceYa();
+            }
+            else {
+                finish();
+            }
+
         }
     }
 }
