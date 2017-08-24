@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">AutoResizeImage</string>
 
-
+    <string name="info">\n You must  select the application that will lunch the AutoResize Panel \n</string>
+     <string name="info0">(c)JRDVSOFT Agosto 2017</string>
+    <string name="info1">\n\n The Service(UsageStats) must be enabled before start working.Once clicked please enable de AutoResizeImage Service \n\nOnce enabled  when you  open the choosen application an option to resize any image willl appear automatically.\n Simple doble tap on the image to resize or click on the big icon of the choosen Image aplication to continue to the Image application and now can choose the already resized picture!!!!!!</string>
     <string name="business_prompt">ELIJE APK DE GALERIA</string>
 
     <string name="pleaseEnablePermission">Permission is needed to display images.</string>

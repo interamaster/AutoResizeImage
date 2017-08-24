@@ -47,7 +47,7 @@ import java.util.List;
 //v03 añadido resize de images que guarda en IMAGENES con animacion y toast
 //v032 añadido pref de nombre app maldita ok en service para que lo sepa desde el boot ycambiado screenreceiver a solo reiniciar service al encender pantalla
 //v033 cambiado chequeo de abrir o no service activity
-
+//v07 añadido panel de instruuciones al inicio..versio 0.5
 public class MainActivity extends AppCompatActivity {
 
     //para el device manager
