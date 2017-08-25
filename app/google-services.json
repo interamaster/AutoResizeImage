@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "835405231050",
+    "firebase_url": "https://auto-image-resizer.firebaseio.com",
+    "project_id": "auto-image-resizer",
+    "storage_bucket": "auto-image-resizer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835405231050:android:66fb6aff54a8d343",
+        "android_client_info": {
+          "package_name": "com.mio.jrdv.autoresizeimage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835405231050-ftr11d23j7ttk3fj5tiimorqu56ssa35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4qP0PhEXDLv03LJZsEkVAdscKBI0YHPQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

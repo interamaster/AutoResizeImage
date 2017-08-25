@@ -2,8 +2,8 @@
     <string name="app_name">AutoResizeImage</string>
 
     <string name="info">\n You must  select the application that will lunch the AutoResize Panel \n</string>
-     <string name="info0">(c)JRDVSOFT Agosto 2017</string>
-    <string name="info1">\n\n The Service(UsageStats) must be enabled before start working.Once clicked please enable de AutoResizeImage Service \n\nOnce enabled  when you  open the choosen application an option to resize any image willl appear automatically.\n Simple doble tap on the image to resize or click on the big icon of the choosen Image aplication to continue to the Image application and now can choose the already resized picture!!!!!!</string>
+     <string name="info0">  (c)JRDVSOFT Agosto 2017</string>
+    <string name="info1">\n\n The Service(UsageStats) must be enabled before start working.Once clicked please enable the AutoResizeImage Service \n\nOnce enabled  when you  open the choosen application an option to resize any image willl appear automatically.\n Simple doble tap on the image to resize or click on the big icon of the choosen Image aplication to continue to the Image application and now can choose the already resized picture!!!!!!</string>
     <string name="business_prompt">ELIJE APK DE GALERIA</string>
 
     <string name="pleaseEnablePermission">Permission is needed to display images.</string>
@@ -17,5 +17,8 @@ C68.5809,277.075,273.832,71.8233,527.023,71.8233 Z
 
     <integer name="circle_original_width">1062</integer>
     <integer name="circle_original_height">1062</integer>
+
+    <!-- AdMob ad unit IDs bloque anuuncios superior -->
+    <string name="banner_ad_unit_id"> ca-app-pub-6700746515260621/6201472468</string>
 
 </resources>

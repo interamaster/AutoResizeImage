@@ -18,6 +18,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,9 @@ import android.widget.Toast;
 import com.amirarcane.recentimages.RecentImages;
 import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
 import com.github.glomadrian.grav.GravView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.jess.ui.TwoWayAdapterView;
 import com.jess.ui.TwoWayGridView;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
@@ -68,6 +73,15 @@ public class Choose2ResizeActivity extends AppCompatActivity {
 
     GravView aniamtionFondo;
 
+    //para ekl anuancio
+
+    private AdView mAdView;
+
+    //para a ayuda
+
+    TextView TEXTinfo1,TEXTinfo2,TEXTinfo3;
+    ImageView FlechaIamgeview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +92,42 @@ public class Choose2ResizeActivity extends AppCompatActivity {
         //To hide AppBar for fullscreen.
         ActionBar ab = getSupportActionBar();
         ab.hide();
+
+
+       // textview de info
+        TEXTinfo1=(TextView)findViewById(R.id.TEXTinfo1);
+        TEXTinfo2=(TextView)findViewById(R.id.TEXTinfo2);
+        TEXTinfo3=(TextView)findViewById(R.id.TEXTinfo3);
+
+        FlechaIamgeview=(ImageView)findViewById(R.id.flechaView) ;
+
+        //al iniciar son invisibles
+
+        TEXTinfo1.setVisibility(View.INVISIBLE);
+        TEXTinfo2.setVisibility(View.INVISIBLE);
+        TEXTinfo3.setVisibility(View.INVISIBLE);
+        FlechaIamgeview.setVisibility(View.INVISIBLE);
+
+        //ads initialize:
+
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this, "ca-app-pub-6700746515260621~88555559614");//ads id de la app!!
+
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        //TODO poner para modo final:
+         AdRequest adRequest = new AdRequest.Builder().build();
+        //para probar:
+/*
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                // Check the LogCat to get your test device ID
+                // .addTestDevice("5B700828CEDE278B71E610C31C1E433E")
+                .build();
+*/
+
+        mAdView.loadAd(adRequest);
+
 
         imageSizeText=(TextView)findViewById(R.id.TEXTinfoSize);
 
@@ -346,11 +396,7 @@ public class Choose2ResizeActivity extends AppCompatActivity {
         return orientation;
     }
 
-    @Override
-    protected void onDestroy() {
-        recentImages.cleanupCache();
-        super.onDestroy();
-    }
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -424,4 +470,67 @@ public class Choose2ResizeActivity extends AppCompatActivity {
         Log.d("Compressor", "Compressed image save in " + compressedImage.getPath());
     }
 
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////CCICLPOS VIDA ADS//////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+
+        recentImages.cleanupCache();
+        super.onDestroy();
+    }
+
+    public void HelpPulsado(View view) {
+
+        //aqui avamos a poner o quitar la ayuda
+
+        //TODO animar
+
+
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        // Use bounce interpolator with amplitude 0.2 and frequency 20
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+
+
+
+        TEXTinfo1.setVisibility(View.VISIBLE);
+        TEXTinfo2.setVisibility(View.VISIBLE);
+        TEXTinfo3.setVisibility(View.VISIBLE);
+        FlechaIamgeview.setVisibility(View.VISIBLE);
+
+        TEXTinfo1.startAnimation(myAnim);
+        TEXTinfo2.startAnimation(myAnim);
+        TEXTinfo3.startAnimation(myAnim);
+        FlechaIamgeview.startAnimation(myAnim);
+
+
+    }
 }

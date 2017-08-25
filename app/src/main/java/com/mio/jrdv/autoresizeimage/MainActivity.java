@@ -49,6 +49,8 @@ import java.util.List;
 //v033 cambiado chequeo de abrir o no service activity
 //v07 añadido panel de instruuciones al inicio..versio 0.5
 //v075 añadido panel de ins en Choosetresizeactivity
+//v095 añadido animacion y botn de ayuda, anuncios creados flata solo  icono de apk y quitar LOGS
+
 public class MainActivity extends AppCompatActivity {
 
     //para el device manager
@@ -205,8 +207,9 @@ public class MainActivity extends AppCompatActivity {
                 // On selecting a spinner item
                 APKNAMEDELSPINNER = adapter.getItemAtPosition(position).toString();
                 // Showing selected spinner item
-                Toast.makeText(getApplicationContext(),
-                        "Selected Galeria : " + APKNAMEDELSPINNER, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),  "Selected Galeria : " + APKNAMEDELSPINNER, Toast.LENGTH_SHORT).show();
+
+                showNewToast("Selected Image Aplication: "+APKNAMEDELSPINNER);
 
                 Log.e("INFO TOAST","Selected Galeria : " + APKNAMEDELSPINNER);
 

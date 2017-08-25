@@ -2,11 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bubble_background"
     android:orientation="vertical">
 
-
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
 
     <TextView
         android:id="@+id/TEXTinfo1"
@@ -16,7 +23,7 @@
         android:textSize="20sp"
         android:background="#22FFFF"
         android:text="   1.SELECT THE IMAGE(S)"
-        android:layout_above="@+id/grav2"
+        android:layout_marginTop="50dp"
         android:layout_alignParentStart="true" />
     <TextView
         android:id="@+id/TEXTinfo2"
@@ -43,8 +50,8 @@
 
     <ImageButton
         android:id="@+id/NOButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="fitXY"
         android:onClick="PulsadoNO"
         android:layout_centerVertical="true"
@@ -90,6 +97,7 @@
 
 
 <ImageView
+    android:id="@+id/flechaView"
     android:layout_width="70dp"
     android:layout_height="match_parent"
     android:layout_marginLeft="0dp"
@@ -122,6 +130,18 @@
         app:path_max_duration="6000"
         />
 
+    <ImageButton
+        android:id="@+id/helpbutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/flat_help1"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/adView"
+       android:onClick="HelpPulsado" />
 
 
 </RelativeLayout>
