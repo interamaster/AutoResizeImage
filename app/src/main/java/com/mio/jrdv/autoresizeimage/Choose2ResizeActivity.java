@@ -455,8 +455,8 @@ public class Choose2ResizeActivity extends AppCompatActivity {
         MediaScannerConnection.scanFile(this, new String[]{compressedImage.toString()}, null,
                 new MediaScannerConnection.OnScanCompletedListener() {
                     public void onScanCompleted(String path, Uri uri) {
-                        Log.i("ExternalStorage", "Scanned " + path + ":");
-                        Log.i("ExternalStorage", "-> uri=" + uri);
+                       // Log.i("ExternalStorage", "Scanned " + path + ":");
+                       // Log.i("ExternalStorage", "-> uri=" + uri);
                     }
                 });
 
@@ -467,7 +467,7 @@ public class Choose2ResizeActivity extends AppCompatActivity {
 
 
         //Toast.makeText(this, "Compressed image save in " + compressedImage.getPath(), Toast.LENGTH_LONG).show();
-        Log.d("Compressor", "Compressed image save in " + compressedImage.getPath());
+       // Log.d("Compressor", "Compressed image save in " + compressedImage.getPath());
     }
 
 

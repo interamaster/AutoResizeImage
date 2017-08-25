@@ -50,6 +50,7 @@ import java.util.List;
 //v07 añadido panel de instruuciones al inicio..versio 0.5
 //v075 añadido panel de ins en Choosetresizeactivity
 //v095 añadido animacion y botn de ayuda, anuncios creados flata solo  icono de apk y quitar LOGS
+//v1 final en google play iconos ok y quitaods LOG
 
 public class MainActivity extends AppCompatActivity {
 
@@ -211,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
                 showNewToast("Selected Image Aplication: "+APKNAMEDELSPINNER);
 
-                Log.e("INFO TOAST","Selected Galeria : " + APKNAMEDELSPINNER);
+               // Log.e("INFO TOAST","Selected Galeria : " + APKNAMEDELSPINNER);
 
                 AutoResizeImageService.PACKAGEMALDITO1=APKNAMEDELSPINNER;
 
@@ -404,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
 
             //volvemos a chequear que se activo:
 
-            Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats  requestcode:"+requestCode);
+          //  Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats  requestcode:"+requestCode);
 
 
 
@@ -413,7 +414,7 @@ public class MainActivity extends AppCompatActivity {
                 // Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
                 // startActivity(intent);
 
-                Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats ");
+              //  Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats ");
 
 
 
@@ -471,7 +472,7 @@ public class MainActivity extends AppCompatActivity {
         for (ResolveInfo infos : pkgAppsList) {
 
 
-            Log.d("INFO",infos.activityInfo.processName);
+           // Log.d("INFO",infos.activityInfo.processName);
             return infos.activityInfo.processName;
 
 
@@ -498,7 +499,7 @@ public class MainActivity extends AppCompatActivity {
         for (ResolveInfo infos : pkgAppsList) {
 
 
-            Log.d("INFO EN IMAGECHOOSE",infos.activityInfo.processName);
+            //Log.d("INFO EN IMAGECHOOSE",infos.activityInfo.processName);
             //return infos.activityInfo.processName;
             apks.add(infos.activityInfo.processName);
 
@@ -527,7 +528,7 @@ public class MainActivity extends AppCompatActivity {
             // Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             // startActivity(intent);
 
-            Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats ");
+           // Log.d("info", "onactivityresult chequeamos si se habilito ya el usagestats ");
 
 
 

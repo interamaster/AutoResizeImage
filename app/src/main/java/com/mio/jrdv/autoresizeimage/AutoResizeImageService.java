@@ -63,9 +63,9 @@ public class AutoResizeImageService extends Service {
 
         PACKAGEMALDITO1=Myapplication.preferences.getString(Myapplication.PREF_APKNAMEDELSPINNER,"NONE");
 
-        Log.d("INFO","INICIADO onCreate EN AUTORESIZEIMAGESERVICE!!");
+        //Log.d("INFO","INICIADO onCreate EN AUTORESIZEIMAGESERVICE!!");
 
-        Log.d("INFO","INICIADO onCreate con PACKAGEMALDITO1="+PACKAGEMALDITO1);
+        //Log.d("INFO","INICIADO onCreate con PACKAGEMALDITO1="+PACKAGEMALDITO1);
         mContext = this;
 
         // REGISTER RECEIVER THAT HANDLES SCREEN ON AND SCREEN OFF LOGIC
@@ -96,7 +96,7 @@ public class AutoResizeImageService extends Service {
         //ej leer el extra del intent:
 
 
-        Log.d("INFO", "REINICIADO onStartCommand EN AUTORESIZEIMAGESERVICE!!");
+        //Log.d("INFO", "REINICIADO onStartCommand EN AUTORESIZEIMAGESERVICE!!");
 
 
         //inicamos la repeticion
@@ -180,8 +180,8 @@ public class AutoResizeImageService extends Service {
                 if (mySortedMap != null && !mySortedMap.isEmpty()) {
                     currenApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
 
-                    Log.v("INFO currentapp: ", currenApp);
-                    Log.v("INFO lastapp: ", lastAppPN+"ultima");
+                   // Log.v("INFO currentapp: ", currenApp);
+                    //Log.v("INFO lastapp: ", lastAppPN+"ultima");
                 }
             }
         } else {
@@ -198,7 +198,7 @@ public class AutoResizeImageService extends Service {
         if (currenApp.equals(PACKAGEMALDITO1) && !FirstTimeAsked2Resize &&!lastAppPN.equals(PACKAGEMALDITO1)) {
           // if (!(lastAppPN.equals(currenApp))) {
                 lastAppPN = currenApp;
-               Log.e("INFO", "gallery started");
+               //Log.e("INFO", "gallery started");
                 //es la primera vez q entramos en la galeria
                 FirstTimeAsked2Resize=true;
 
@@ -220,7 +220,7 @@ public class AutoResizeImageService extends Service {
         }
         else   if (!currenApp.equals(CURRENT_PACKAGE_NAME) && FirstTimeAsked2Resize && lastAppPN.equals(PACKAGEMALDITO1)) {
               //  if (!(currenApp.equals(lastAppPN))) {
-                   Log.e("INFO", " gallery stoped");
+                  // Log.e("INFO", " gallery stoped");
                    lastAppPN = currenApp;
 
                     //salimos de la galeria
@@ -231,7 +231,7 @@ public class AutoResizeImageService extends Service {
 
       else   if (!currenApp.contains(CURRENT_PACKAGE_NAME)&& !FirstTimeAsked2Resize && lastAppPN.equals(PACKAGEMALDITO1)){
 
-             Log.e("INFO", "NO ESTAMOS");
+            // Log.e("INFO", "NO ESTAMOS");
             lastAppPN = currenApp;
 
             FirstTimeAsked2Resize=false;
@@ -266,7 +266,7 @@ public class AutoResizeImageService extends Service {
             currentApp = tasks.get(0).processName;
         }
 
-        Log.e("adapter", "Current App in foreground is: " + currentApp);
+      //  Log.e("adapter", "Current App in foreground is: " + currentApp);
         return currentApp;
     }
 
@@ -294,7 +294,7 @@ public class AutoResizeImageService extends Service {
                         topPackageName = usageStats.getPackageName();
                         lastUsedAppTime = usageStats.getLastTimeUsed();
 
-                          Log.v("INFO currentapp: ", topPackageName);
+                         // Log.v("INFO currentapp: ", topPackageName);
                           // Log.v("INFO lastapp: ", lastUsedAppTime);
 
                     }
@@ -316,7 +316,7 @@ public class AutoResizeImageService extends Service {
     public void onDestroy() {
 
 
-         Log.i("INFO", "Proceso  cancelled");
+       //  Log.i("INFO", "Proceso  cancelled");
         super.onDestroy();
 
 
@@ -335,7 +335,7 @@ public class AutoResizeImageService extends Service {
         if (instance != null) {
             instance.stopSelf();
 
-             Log.v("INFO  ",  "proceso parado!!!");
+            // Log.v("INFO  ",  "proceso parado!!!");
 
 
         }

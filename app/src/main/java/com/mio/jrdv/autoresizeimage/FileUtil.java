@@ -93,10 +93,10 @@ class FileUtil {
         File newFile = new File(file.getParent(), newName);
         if (!newFile.equals(file)) {
             if (newFile.exists() && newFile.delete()) {
-                Log.d("FileUtil", "Delete old " + newName + " file");
+                //Log.d("FileUtil", "Delete old " + newName + " file");
             }
             if (file.renameTo(newFile)) {
-                Log.d("FileUtil", "Rename file to " + newName);
+                //Log.d("FileUtil", "Rename file to " + newName);
             }
         }
         return newFile;
