@@ -48,6 +48,7 @@ import java.util.List;
 //v032 añadido pref de nombre app maldita ok en service para que lo sepa desde el boot ycambiado screenreceiver a solo reiniciar service al encender pantalla
 //v033 cambiado chequeo de abrir o no service activity
 //v07 añadido panel de instruuciones al inicio..versio 0.5
+//v075 añadido panel de ins en Choosetresizeactivity
 public class MainActivity extends AppCompatActivity {
 
     //para el device manager

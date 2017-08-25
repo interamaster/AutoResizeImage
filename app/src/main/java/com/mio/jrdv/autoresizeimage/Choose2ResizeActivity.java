@@ -84,7 +84,8 @@ public class Choose2ResizeActivity extends AppCompatActivity {
         aniamtionFondo=(GravView)findViewById(R.id.grav2);
 
 
-        final TwoWayGridView twoWayGridView = (TwoWayGridView) findViewById(R.id.gridview);
+         final TwoWayGridView twoWayGridView = (TwoWayGridView) findViewById(R.id.gridview);
+
 
         contentResolver = this.getContentResolver();
         recentImages = new RecentImages();
@@ -138,7 +139,10 @@ public class Choose2ResizeActivity extends AppCompatActivity {
 
                         //mostramos la animacion de fondo
 
-                        aniamtionFondo.setVisibility(View.INVISIBLE);
+
+                       // aniamtionFondo.setVisibility(View.GONE);
+                         aniamtionFondo.setVisibility(View.INVISIBLE);
+                        //aniamtionFondo.invalidate();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -413,7 +417,6 @@ public class Choose2ResizeActivity extends AppCompatActivity {
 
 
         //TODO animacion o algo
-
 
 
 
