@@ -349,7 +349,12 @@ public class Choose2ResizeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        return;
+
+        showNewToast(getString(R.string.BACKBUTTON));
+
+       // return;
+
+        finish();
     }
 
 
@@ -408,7 +413,8 @@ public class Choose2ResizeActivity extends AppCompatActivity {
 
 
         StyleableToast st = new StyleableToast(Choose2ResizeActivity.this, texto2Toast, Toast.LENGTH_SHORT);
-        st.setBackgroundColor(Color.parseColor("#ff5a5f"));
+        //st.setBackgroundColor(Color.parseColor("#ff5a5f"));
+        st.setBackgroundColor(Color.LTGRAY);
         st.setTextColor(Color.WHITE);
         st.setIcon(R.mipmap.ic_launcher);//TODO poner icono app
         st.spinIcon();

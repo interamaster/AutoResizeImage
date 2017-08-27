@@ -22,7 +22,7 @@
         android:layout_marginBottom="14dp"
         android:textSize="20sp"
         android:background="#22FFFF"
-        android:text="   1.SELECT THE IMAGE(S)"
+        android:text="@string/_1_select_the_image_s"
         android:layout_marginTop="50dp"
         android:layout_alignParentStart="true" />
     <TextView
@@ -34,7 +34,7 @@
         android:textSize="17sp"
         android:background="#22AAFF"
         android:layout_marginLeft="40dp"
-        android:text="  2.DOBLE TAP ON THE IMAGE TO REDUCE IT" />
+        android:text="@string/_2_doble_tap_on_the_image_to_reduce_it" />
 
     <TextView
         android:id="@+id/TEXTinfo3"
@@ -46,7 +46,7 @@
         android:layout_marginLeft="80dp"
         android:textSize="16sp"
         android:background="#2277FF"
-        android:text="3.CLICK IMAGE APPLICATION  BIG ICON TO CONTINUE, AND THERE YOU CAN NOW CHOOSE THE ALREADY REDUCED IMAGE!!" />
+        android:text="@string/_3_click_image_application_big_icon_to_continue_and_there_you_can_now_choose_the_already_reduced_image" />
 
     <ImageButton
         android:id="@+id/NOButton"

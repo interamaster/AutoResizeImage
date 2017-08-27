@@ -51,6 +51,7 @@ import java.util.List;
 //v075 añadido panel de ins en Choosetresizeactivity
 //v095 añadido animacion y botn de ayuda, anuncios creados flata solo  icono de apk y quitar LOGS
 //v1 final en google play iconos ok y quitaods LOG
+//v1,01 añadido español y cambiado back button ahor asigue a gasleria
 
 public class MainActivity extends AppCompatActivity {
 
@@ -446,7 +447,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         StyleableToast st = new StyleableToast(MainActivity.this, texto2Toast, Toast.LENGTH_SHORT);
-        st.setBackgroundColor(Color.parseColor("#ff5a5f"));
+        //st.setBackgroundColor(Color.parseColor("#ff5a5f"));
+        st.setBackgroundColor(Color.LTGRAY);
         st.setTextColor(Color.WHITE);
         st.setIcon(R.mipmap.ic_launcher);//TODO poner icono app
         st.spinIcon();

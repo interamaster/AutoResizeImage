@@ -3,8 +3,16 @@
 
     <string name="info">\n You must  select the application that will lunch the AutoResize Panel \n</string>
      <string name="info0">  (c)JRDVSOFT Agosto 2017</string>
-    <string name="info1">\n\n The Service(UsageStats) must be enabled before start working.Once clicked please enable the AutoResizeImage Service \n\nOnce enabled  when you  open the choosen application an option to resize any image willl appear automatically.\n Simple doble tap on the image to resize or click on the big icon of the choosen Image aplication to continue to the Image application and now can choose the already resized picture!!!!!!</string>
-    <string name="business_prompt">ELIJE APK DE GALERIA</string>
+    <string name="info1">1º)Give permission to acces your images(to be able to compress them..)\n
+2º)Give access to data usage to Auto Resize Image\n
+3º)Choose your favorite Image Gallery Apk, and click "READY"\n
+
+You are done, from now on every time you open your  favorite Image Gallery Apk , a screen will show you all your images in case you want to compress any before attach it/send it.\n
+
+Simply doble tap on the image and it will be compresed.When done simply click the big center icon of your gallery apk and your gallery with the already compressed images will appear.\n
+
+If do not need to compress simply click the big center icon of your gallery apk.</string>
+    <string name="business_prompt">CHOOSE GALLERY APK</string>
 
     <string name="pleaseEnablePermission">Permission is needed to display images.</string>
 
@@ -20,5 +28,8 @@ C68.5809,277.075,273.832,71.8233,527.023,71.8233 Z
 
     <!-- AdMob ad unit IDs bloque anuuncios superior -->
     <string name="banner_ad_unit_id"> ca-app-pub-6700746515260621/6201472468</string>
-
+    <string name="_1_select_the_image_s">1.SELECT THE IMAGE(S)</string>
+    <string name="_2_doble_tap_on_the_image_to_reduce_it">2.DOBLE TAP ON THE IMAGE TO REDUCE IT</string>
+    <string name="_3_click_image_application_big_icon_to_continue_and_there_you_can_now_choose_the_already_reduced_image">3.CLICK IMAGE APPLICATION BIG ICON TO CONTINUE, AND THERE YOU CAN NOW CHOOSE THE ALREADY REDUCED IMAGE!!</string>
+    <string name="BACKBUTTON">YOU CAN ALSO CLICK THE BIG CENTER ICON</string>
 </resources>

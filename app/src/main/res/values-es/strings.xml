@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoResizeImage</string>
+
+    <string name="info">\n Elige la Aplicacion que lanzara el Panel de AutoResize \n</string>
+    <string name="info0">  (c)JRDVSOFT Agosto 2017</string>
+    <string name="info1">\n\n El servicio de accesos a datos de uso ES NECESARIO  y lo tienes que habilitar si o si!! \n\n Una vez habilitado y elegido el programa de ver imagenes(yo por ejemplo Galeria) le das a “READY” y ya está.\n Cada vez que abras la galeria te saldra mi herramienta por si quieres comprimir antes de enviar alguna foto, si es asi elije la(s) foto y doble tap en ella  para comprimir y si no pulsa en icono del centro para seguir a la aplicacion elegida (yo por ejemplo Galeria) donde ya te saldran las imagenes comprimidas sin perder calidad!!</string>
+    <string name="business_prompt">ELIJE APK DE GALERIA</string>
+    <string name="BACKBUTTON">TAMBIEN PODIAS PULSAR EL ICONO GRANDE DEL CENTRO!</string>
+    <string name="pleaseEnablePermission">Permission is needed to display images.</string>
+    <string name="_1_select_the_image_s">1.ELIJE IMAGEN(ES)</string>
+    <string name="_2_doble_tap_on_the_image_to_reduce_it">2.DOBLE TAP EN LA IMAGEN PARA COMPRIMIR</string>
+    <string name="_3_click_image_application_big_icon_to_continue_and_there_you_can_now_choose_the_already_reduced_image">3.PULSA EN EL ICONO DE TU APLICACION ELEGIDA  GRANDE DEL CENTRO PARA CONTINUAR, Y ALLI YA ESTARAN TUS IMAGENES COMPRIMIDAS!!</string>
+</resources>
