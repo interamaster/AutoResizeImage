@@ -11,4 +11,54 @@
     <string name="_1_select_the_image_s">1.ELIJE IMAGEN(ES)</string>
     <string name="_2_doble_tap_on_the_image_to_reduce_it">2.DOBLE TAP EN LA IMAGEN PARA COMPRIMIR</string>
     <string name="_3_click_image_application_big_icon_to_continue_and_there_you_can_now_choose_the_already_reduced_image">3.PULSA EN EL ICONO DE TU APLICACION ELEGIDA  GRANDE DEL CENTRO PARA CONTINUAR, Y ALLI YA ESTARAN TUS IMAGENES COMPRIMIDAS!!</string>
+
+
+
+    <string name="circle">
+M527.023,71.8233 C780.213,71.8233,985.464,277.075,985.464,530.265
+C985.464,783.455,780.213,988.707,527.023,988.707
+C273.832,988.707,68.5809,783.455,68.5809,530.265
+C68.5809,277.075,273.832,71.8233,527.023,71.8233 Z
+  </string>
+
+    <integer name="circle_original_width">1062</integer>
+    <integer name="circle_original_height">1062</integer>
+
+    <!-- AdMob ad unit IDs bloque anuuncios superior -->
+    <string name="banner_ad_unit_id"> ca-app-pub-6700746515260621/6201472468</string>
+
+
+    <string-array name="bubble">
+        <item>#41ffffff</item>
+        <item>#18ffffff</item>
+        <item>#1fffffff</item>
+        <item>#25ffffff</item>
+    </string-array>
+
+
+    <string-array name="BubbleAnimations">
+        <item>com.github.glomadrian.grav.generator.animation.SideToSideAnimator</item>
+        <item>com.github.glomadrian.grav.generator.animation.ShakeAnimator</item>
+    </string-array>
+
+
+    <string-array name="red">
+
+        <item>#9E0142</item>
+        <item>#D53E4F</item>
+        <item>#F46D43</item>
+        <item>#FDAE61</item>
+        <item>#FEE08B</item>
+        <item>#FFFFBF</item>
+        <item>#E6F598</item>
+        <item>#ABDDA4</item>
+        <item>#66C2A5</item>
+        <item>#3288BD</item>
+        <item>#5E4FA2</item>
+    </string-array>
+
+    <string-array name="path">
+        <item>com.github.glomadrian.grav.generator.animation.PathAnimator</item>
+        <item>com.github.glomadrian.grav.generator.animation.BallSizeAnimator</item>
+    </string-array>
 </resources>
