@@ -52,6 +52,7 @@ import java.util.List;
 //v095 añadido animacion y botn de ayuda, anuncios creados flata solo  icono de apk y quitar LOGS
 //v1 final en google play iconos ok y quitaods LOG
 //v1,01 añadido español y cambiado back button ahor asigue a gasleria
+//v1,02 cambiado formato de compresion a JPEG para que se vea en PC
 
 public class MainActivity extends AppCompatActivity {
 

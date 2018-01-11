@@ -232,7 +232,8 @@ public class Choose2ResizeActivity extends AppCompatActivity {
                     .setMaxWidth(640)
                     .setMaxHeight(480)
                     .setQuality(75)
-                    .setCompressFormat(Bitmap.CompressFormat.WEBP)
+                   // .setCompressFormat(Bitmap.CompressFormat.WEBP)
+                    .setCompressFormat(Bitmap.CompressFormat.JPEG)
                     .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
                             Environment.DIRECTORY_PICTURES).getAbsolutePath())
                     .compressToFileAsFlowable(actualImage)
